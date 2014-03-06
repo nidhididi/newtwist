@@ -19,8 +19,7 @@ development:
   encoding: unicode
   database: NewTwist_development
   pool: 5
-  port: 5432
-  host: "ec2-54-204-16-70.compute-1.amazonaws.com"
+
 
 
  
