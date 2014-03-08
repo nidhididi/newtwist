@@ -1,18 +1,36 @@
 NewTwist::Application.routes.draw do
-  resources :tweets
 
+
+  #get "users/first_name"
+  #get "users/last_name"
+  #get "users/photo_url"
+  #get "users/sign_up"
+  #get "registrations/index"
+  
+  
+  resources :tweets
   resources :comments
+
 
   get "welcome/index"
   get "welcome/about"
   get "welcome/contact"
+
+  get "users/show"
+  get "users/index"
+  get "comments/recent"
+
+  root 'welcome#index'
+
+  devise_for :users, :controllers => { :registrations => "registrations" }
   
-  devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'welcome#index'
+ 
+
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

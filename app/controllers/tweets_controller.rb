@@ -11,6 +11,9 @@ class TweetsController < ApplicationController
   # GET /tweets/1
   # GET /tweets/1.json
   def show
+    @user = @tweet.user
+
+    @num_comments = @tweet.comments.count
   end
 
   # GET /tweets/new
