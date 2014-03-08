@@ -16,7 +16,7 @@
     <% @comments.each do |comment| %>
       <tr>
         <td><%= comment.tweet_id %></td>
-        <td><%= comment.user.email %></td>
+        <td><%= comment.current_user.email %></td>
         <td><%= comment.comment %></td>
         <td><%= link_to 'Show', comment %></td>
         <td><%= link_to 'Edit', edit_comment_path(comment) %></td>

@@ -15,10 +15,6 @@
   <%= @comment.comment %>
 </p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @comment.user.email %>
-</p>
 
 <%= link_to 'Edit', edit_comment_path(@comment) %> |
 <%= link_to 'Back', comments_path %>

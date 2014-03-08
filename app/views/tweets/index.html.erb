@@ -3,9 +3,9 @@
 <table>
   <thead>
     <tr>
-      <th>User</th>
+      <!--<th>User</th>-->
       <th>Tweet</th>
-      <th>Num comments</th>
+      <!--<th>Num comments</th>-->
       <th></th>
       <th></th>
       <th></th>
@@ -15,9 +15,9 @@
   <tbody>
     <% @tweets.each do |tweet| %>
       <tr>
-        <td><%= tweet.user_id %></td>
+        <!--<td><%= tweet.user_id %></td>-->
         <td><%= tweet.tweet %></td>
-        <td><%= tweet.num_comments %></td>
+        <!--<td><%= tweet.num_comments %></td>-->
         <td><%= link_to 'Show', tweet %></td>
         <td><%= link_to 'Edit', edit_tweet_path(tweet) %></td>
         <td><%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
