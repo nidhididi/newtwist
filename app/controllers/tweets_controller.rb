@@ -6,13 +6,16 @@ class TweetsController < ApplicationController
   # GET /tweets.json
   def index
     @tweets = Tweet.all
+    #@user = @tweet.user
+    #@comments = @tweet.comments
+    #@num_comments = @tweet.comments.count
   end
 
   # GET /tweets/1
   # GET /tweets/1.json
   def show
     @user = @tweet.user
-
+    @comments = @tweet.comments
     @num_comments = @tweet.comments.count
   end
 
@@ -29,6 +32,7 @@ class TweetsController < ApplicationController
   # POST /tweets.json
   def create
     @tweet = Tweet.new(tweet_params)
+    @tweet.user_id = current_user.id
 
     respond_to do |format|
       if @tweet.save
