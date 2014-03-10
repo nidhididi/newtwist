@@ -8,9 +8,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%= link_to 'Home', root_path, class: 'navbar-brand' %>
-      <%= link_to 'About', welcome_about_path, class: 'navbar-brand'%>
-      <%= link_to 'Tweets', tweets_path, class: 'navbar-brand'%>
+        <a href="/" class="brand">
+        <img src= "/assets/Lime-Twist.png" height= "40" width= "40"> </a>
+        <%= link_to 'Home', root_path, class: 'navbar-brand' %>
+        <%= link_to 'About', welcome_about_path, class: 'navbar-brand'%>
+        <%= link_to 'Tweets', tweets_path, class: 'navbar-brand'%>
+    </div>
     </div>
     <div class="collapse navbar-collapse">
 
@@ -25,7 +28,7 @@
       Logged in as <strong> <%= current_user.email %></strong> |
       <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
       <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-      <img width= 60px height= auto src=  <%=current_user.photo_url %> alt=" " class="img-circle">
+      <img width= 40px height= auto src=  <%=current_user.photo_url %> alt=" " class="img-circle">
      
    
   <% else %>
