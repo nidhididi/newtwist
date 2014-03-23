@@ -2,6 +2,7 @@ class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!
 
+  include TweetsHelper
   # GET /comments
   # GET /comments.json
   def index
@@ -11,12 +12,16 @@ class CommentsController < ApplicationController
   # GET /comments/1
   # GET /comments/1.json
   def show
-
+   #@tweet = comment.tweet
   end
 
   # GET /comments/new
   def new
     @comment = Comment.new
+    @tweet_id = params[:tweet_id]
+    @tweet = Tweet.find(@tweet_id)
+    @user = @comment.user
+
   end
 
   # GET /comments/1/edit
@@ -27,7 +32,9 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @comment = Comment.new(comment_params)
-
+    @comment.user_id = current_user.id
+    #@tweet = comment.tweet
+    #set_num_comments(comment_params[:tweet_id])
     respond_to do |format|
       if @comment.save
         format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
@@ -37,6 +44,7 @@ class CommentsController < ApplicationController
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
+    
   end
 
   # PATCH/PUT /comments/1

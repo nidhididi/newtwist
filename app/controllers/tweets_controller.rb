@@ -2,6 +2,8 @@ class TweetsController < ApplicationController
   before_action :set_tweet, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
+  include TweetsHelper
+
   # GET /tweets
   # GET /tweets.json
   def index
@@ -15,8 +17,23 @@ class TweetsController < ApplicationController
   # GET /tweets/1.json
   def show
     @user = @tweet.user
-    @comments = @tweet.comments
+
     @num_comments = @tweet.comments.count
+  end
+
+  def update_all_tweets
+
+    tweets = Tweet.all
+
+    @response_html = ""
+
+    tweets.each do |tweet|
+      set_num_comments (tweet.id)
+
+      @response_html += "Update tweet <b>#{tweet.id}<b><br><br> \n "
+
+    end
+
   end
 
   # GET /tweets/new
@@ -32,12 +49,16 @@ class TweetsController < ApplicationController
   # POST /tweets.json
   def create
     @tweet = Tweet.new(tweet_params)
+    @user = @tweet.user
+    @comments = @tweet.comments
+    @num_comments = @tweet.comments.count
     @tweet.user_id = current_user.id
 
     respond_to do |format|
       if @tweet.save
         format.html { redirect_to @tweet, notice: 'Tweet was successfully created.' }
         format.json { render action: 'show', status: :created, location: @tweet }
+        format.js
       else
         format.html { render action: 'new' }
         format.json { render json: @tweet.errors, status: :unprocessable_entity }
